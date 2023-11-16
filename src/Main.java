@@ -15,11 +15,11 @@ public class Main {
 
     while (words.hasNext()) {
       HttpURLConnection con = (HttpURLConnection)(new URL(baseURL + words.next()).openConnection());
-      con.setInstanceFollowRedirects(false );
+      con.setInstanceFollowRedirects(false);
       con.connect();
       int responseCode = con.getResponseCode();
       System.out.println(responseCode);
-      if (responseCode == 302) {
+      if (responseCode == 302 || responseCode == 504) {
         String location = con.getHeaderField("Location");
         output.append(location);
       }
